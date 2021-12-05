@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-// test
 @RestController
 @Slf4j
 @RequestMapping(value = "/artemis")
