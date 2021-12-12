@@ -1,5 +1,7 @@
 package com.learn.artemismq.api;
-import com.learn.artemismq.services.ProducerService;
+import com.learn.artemismq.model.BaseMessage;
+import com.learn.artemismq.model.MsTemplateMessage;
+import com.learn.artemismq.producer.ProducerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,14 +26,14 @@ public class MessageController {
 
 
     @PostMapping(value = "/send")
-    public ResponseEntity<String> send (@RequestBody String message){
+    public ResponseEntity<String> send (@RequestBody MsTemplateMessage msTemplateMessage){
         try{
-         despacherService.sendMessage(message);
+         despacherService.sendMessage(msTemplateMessage);
         }catch (Exception e){
-           log.error("Send message failed: "+message,e);
-           return new ResponseEntity<>("Failed to send message: "+message, HttpStatus.INTERNAL_SERVER_ERROR);
+           log.error("Send message failed: "+msTemplateMessage.toString(),e);
+           return new ResponseEntity<>("Failed to send message: "+msTemplateMessage.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Succeed to send message: "+message, HttpStatus.OK);
+        return new ResponseEntity<>("Succeed to send message: "+msTemplateMessage.toString(), HttpStatus.OK);
     }
 
 }

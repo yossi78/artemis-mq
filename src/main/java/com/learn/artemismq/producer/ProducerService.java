@@ -1,4 +1,5 @@
-package com.learn.artemismq.services;
+package com.learn.artemismq.producer;
+import com.learn.artemismq.model.BaseMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class ProducerService {
+public class ProducerService implements IQueueProducer{
 
     @Value("${artemis.jms.queue}")
     private String artemisJmsQueue;
@@ -23,9 +24,9 @@ public class ProducerService {
     }
 
 
-    public void sendMessage(String message){
-        log.info("PUBLISH MESSAGE -> "+message);
-        jmsTemplate.convertAndSend(artemisJmsQueue,message);
+    @Override
+    public void sendMessage(BaseMessage baseMessage) {
+        log.info("PUBLISH MESSAGE -> "+baseMessage.toString());
+        jmsTemplate.convertAndSend(artemisJmsQueue,baseMessage);
     }
-
 }
