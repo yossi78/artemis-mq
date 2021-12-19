@@ -25,7 +25,7 @@ public class ArtemisProducer implements IQueueProducer{
 
 
     @Override
-    public void sendMessage(BaseMessage baseMessage) {
+    public void publishMessage(BaseMessage baseMessage) {
         log.info("PUBLISH MESSAGE -> "+baseMessage.toString());
         jmsTemplate.convertAndSend(artemisJmsQueue,baseMessage);
     }
