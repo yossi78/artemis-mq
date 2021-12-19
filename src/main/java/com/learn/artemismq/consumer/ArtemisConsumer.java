@@ -13,7 +13,7 @@ public class ArtemisConsumer implements IQueueConsumer{
 
     @Override
     @JmsListener(destination = "${artemis.jms.queue}")
-    public void receiveMessage(BaseMessage baseMessage) {
+    public void consumeMessage(BaseMessage baseMessage) {
         log.info("RECIEVE MESSAGE: " + baseMessage.toString());
     }
 }
