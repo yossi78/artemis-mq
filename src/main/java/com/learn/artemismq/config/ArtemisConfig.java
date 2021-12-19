@@ -25,9 +25,6 @@ public class ArtemisConfig {
     @Bean(value = "artemisMqFactory")
     public org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory senderActiveMQConnectionFactory() {
         org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory factory= new org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory(brokerUrl);
-        factory.setUser("admin");
-        factory.setPassword("admin");
-        //factory.setTrustAllPackages(true);
         return factory;
     }
 
