@@ -1,7 +1,6 @@
 package com.learn.artemismq.api;
-import com.learn.artemismq.model.BaseMessage;
 import com.learn.artemismq.model.MsTemplateMessage;
-import com.learn.artemismq.producer.ProducerService;
+import com.learn.artemismq.producer.ArtemisProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/artemis")
 public class MessageController {
 
-    private ProducerService despacherService;
+    private ArtemisProducer despacherService;
 
     @Autowired
-    public MessageController(ProducerService despacherService){
+    public MessageController(ArtemisProducer despacherService){
         this.despacherService=despacherService;
     }
 

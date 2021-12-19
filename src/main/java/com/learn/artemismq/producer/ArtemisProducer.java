@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class ProducerService implements IQueueProducer{
+public class ArtemisProducer implements IQueueProducer{
 
     @Value("${artemis.jms.queue}")
     private String artemisJmsQueue;
@@ -19,7 +19,7 @@ public class ProducerService implements IQueueProducer{
     private JmsTemplate jmsTemplate;
 
     @Autowired
-    public ProducerService(JmsTemplate jmsTemplate){
+    public ArtemisProducer(JmsTemplate jmsTemplate){
         this.jmsTemplate=jmsTemplate;
     }
 
