@@ -5,6 +5,6 @@ import com.learn.artemismq.model.BaseMessage;
 
 public interface IQueueProducer {
 
-    public void publishMessage(BaseMessage baseMessage);
+    public void produceMessage(BaseMessage baseMessage);
 
 }
