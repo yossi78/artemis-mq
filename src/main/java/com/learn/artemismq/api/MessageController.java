@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/artemis")
 public class MessageController {
 
-    private ArtemisProducer despacherService;
+    private ArtemisProducer artemisProducer;
 
     @Autowired
-    public MessageController(ArtemisProducer despacherService){
-        this.despacherService=despacherService;
+    public MessageController(ArtemisProducer artemisProducer){
+        this.artemisProducer = artemisProducer;
     }
 
 
     @PostMapping(value = "/send")
     public ResponseEntity<String> send (@RequestBody MsTemplateMessage msTemplateMessage){
         try{
-         despacherService.produceMessage(msTemplateMessage);
+         artemisProducer.produceMessage(msTemplateMessage);
         }catch (Exception e){
            log.error("Send message failed: "+msTemplateMessage.toString(),e);
            return new ResponseEntity<>("Failed to send message: "+msTemplateMessage.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
