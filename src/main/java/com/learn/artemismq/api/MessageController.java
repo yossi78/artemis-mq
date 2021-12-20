@@ -27,7 +27,7 @@ public class MessageController {
     @PostMapping(value = "/send")
     public ResponseEntity<String> send (@RequestBody MsTemplateMessage msTemplateMessage){
         try{
-         artemisProducer.publishMessage(msTemplateMessage);
+         artemisProducer.publishMessage(msTemplateMessage.getOperation(),msTemplateMessage.getMessage());
         }catch (Exception e){
            log.error("Send message failed: "+msTemplateMessage.toString(),e);
            return new ResponseEntity<>("Failed to send message: "+msTemplateMessage.toString(), HttpStatus.INTERNAL_SERVER_ERROR);

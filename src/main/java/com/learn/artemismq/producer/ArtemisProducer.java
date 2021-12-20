@@ -28,7 +28,8 @@ public class ArtemisProducer implements IQueueProducer{
 
 
     @Override
-    public void publishMessage(MsTemplateMessage msTemplateMessage) {
+    public void publishMessage(String operation, String data) {
+        MsTemplateMessage msTemplateMessage=new MsTemplateMessage(operation,data);
         log.info("PUBLISH MESSAGE -> "+msTemplateMessage.toString());
         jmsTemplate.convertAndSend(artemisJmsQueue,msTemplateMessage);
     }
