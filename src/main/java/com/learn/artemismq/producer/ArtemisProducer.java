@@ -1,5 +1,6 @@
 package com.learn.artemismq.producer;
 import com.learn.artemismq.model.BaseMessage;
+import com.learn.artemismq.model.MsTemplateMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,8 +28,8 @@ public class ArtemisProducer implements IQueueProducer{
 
 
     @Override
-    public void produceMessage(BaseMessage baseMessage) {
-        log.info("PUBLISH MESSAGE -> "+baseMessage.toString());
-        jmsTemplate.convertAndSend(artemisJmsQueue,baseMessage);
+    public void publishMessage(MsTemplateMessage msTemplateMessage) {
+        log.info("PUBLISH MESSAGE -> "+msTemplateMessage.toString());
+        jmsTemplate.convertAndSend(artemisJmsQueue,msTemplateMessage);
     }
 }
