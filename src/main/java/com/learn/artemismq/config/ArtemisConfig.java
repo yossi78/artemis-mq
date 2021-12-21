@@ -9,6 +9,7 @@ import org.springframework.jms.core.JmsTemplate;
 import javax.jms.ConnectionFactory;
 
 
+
 @Configuration
 @EnableJms
 public class ArtemisConfig {
