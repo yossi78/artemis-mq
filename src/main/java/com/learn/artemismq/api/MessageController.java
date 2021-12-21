@@ -1,6 +1,7 @@
 package com.learn.artemismq.api;
 import com.learn.artemismq.model.MsTemplateMessage;
 import com.learn.artemismq.producer.ArtemisProducer;
+import com.learn.artemismq.services.ArtemisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,18 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/artemis")
 public class MessageController {
 
-    private ArtemisProducer artemisProducer;
+    private ArtemisService artemisService;
 
     @Autowired
-    public MessageController(ArtemisProducer artemisProducer){
-        this.artemisProducer = artemisProducer;
+    public MessageController(ArtemisService artemisService) {
+        this.artemisService = artemisService;
     }
-
 
     @PostMapping(value = "/send")
     public ResponseEntity<String> send (@RequestBody MsTemplateMessage msTemplateMessage){
         try{
-         artemisProducer.publishMessage(msTemplateMessage.getOperation(),msTemplateMessage.getMessage());
+            artemisService.publishMessage(msTemplateMessage.getOperation(),msTemplateMessage.getMessage());
         }catch (Exception e){
            log.error("Send message failed: "+msTemplateMessage.toString(),e);
            return new ResponseEntity<>("Failed to send message: "+msTemplateMessage.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
