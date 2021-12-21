@@ -21,8 +21,8 @@ public class ArtemisService {
     }
 
     public void publishMessage(String operation, String data){
-//       amqProducer.publishMessage(operation, data);
-        artemisProducer.publishMessage(operation,data);
+       amqProducer.publishMessage(operation, data);
+       artemisProducer.publishMessage(operation,data);
     }
 
 }
