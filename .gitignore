@@ -17,6 +17,15 @@ target/
 *.iws
 *.iml
 *.ipr
+.gitattributes
+.perf-journ*
+activemq-bind*
+*.amq
+mvnw
+mvnw.cmd
+*.lock
+*.1
+*.2
 
 ### NetBeans ###
 /nbproject/private/
